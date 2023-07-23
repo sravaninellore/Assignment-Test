@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSON Display</title>
+    <script>
+        function displayJSON() {
+            var jsonTextArea = document.getElementById("json_data");
+            var json = jsonTextArea.value;
+
+            try {
+                var data = JSON.parse(json);
+                var formHTML = "<form>";
+
+                for (var key in data) {
+                    formHTML += "<label>" + key + ":</label>";
+                    formHTML += "<input type='text' value='" + data[key] + "' readonly>";
+                    formHTML += "<br>";
+                }
+
+                formHTML += "</form>";
+
+                document.getElementById("output").innerHTML = formHTML;
+            } catch (error) {
+                document.getElementById("output").innerHTML = "Invalid JSON";
+            }
+        }
+    </script>
+</head>
+<body>
+    <textarea id="json_data" rows="10" cols="50"></textarea>
+    <br>
+    <button onclick="displayJSON()">Display</button>
+    <br>
+    <div id="output"></div>
+</body>
+</html>
